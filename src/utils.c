@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mhaksal <m.haksal@gmail.com>               +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/03 14:25:14 by mhaksal           #+#    #+#             */
+/*   Updated: 2022/06/08 12:43:09 by mhaksal          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../Include/philo.h"
 
 int	ft_atoi(const char *str)
@@ -32,19 +44,26 @@ void	exit_message(char *str, int exit_code)
 	exit(exit_code);
 }
 
-long long	get_timestamp()
+long long	get_timestamp(long long timestamp)
 {
 	struct timeval	tv;
+	long long		now;
 
 	gettimeofday(&tv, NULL);
-	return ((tv.tv_sec * 1000) + (tv.tv_usec / 1000));
+	now = (tv.tv_sec * 1000) + (tv.tv_usec / 1000);
+	if (!timestamp)
+		return (now);
+	else
+	{
+		return (now - timestamp);
+	}
 }
 
 void	sleep_f(int how_long)
 {
-	long long timestamp;
+	long long	timestamp;
 
-	timestamp = get_timestamp();
-	while (get_timestamp() - timestamp != how_long)
+	timestamp = get_timestamp(0);
+	while (get_timestamp(0) - timestamp < how_long)
 		usleep(1);
 }
