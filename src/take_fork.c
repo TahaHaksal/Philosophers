@@ -6,7 +6,7 @@
 /*   By: mhaksal <m.haksal@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 13:53:12 by mhaksal           #+#    #+#             */
-/*   Updated: 2022/06/08 12:48:01 by mhaksal          ###   ########.fr       */
+/*   Updated: 2022/06/08 19:09:39 by mhaksal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,8 @@ void	take_fork(t_phil *ptr)
 	if (!states[pos] && !states[left] && !states[right])
 	{
 		states[pos] = 1;
-		pthread_mutex_lock(&ptr->rules->mutex2);
-		printf("%lld %d has taken a fork\n", get_timestamp(ptr->timestamp), pos);
-		printf("%lld %d has taken a fork\n", get_timestamp(ptr->timestamp), pos);
-		pthread_mutex_unlock(&ptr->rules->mutex2);
+		print_same(ptr, "has taken a fork");
+		print_same(ptr, "has taken a fork");
 	}
 	pthread_mutex_unlock(&ptr->rules->mutex);
 }

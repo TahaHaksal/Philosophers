@@ -6,7 +6,7 @@
 /*   By: mhaksal <m.haksal@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 14:24:44 by mhaksal           #+#    #+#             */
-/*   Updated: 2022/06/08 12:32:30 by mhaksal          ###   ########.fr       */
+/*   Updated: 2022/06/08 18:57:39 by mhaksal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,12 +54,10 @@ void	init_ids(t_shared_mem *ptr, char **args)
 		ptr->ids[i].thinking = 0;
 		ptr->states[i] = 0;
 		ptr->ids[i].pos = i;
-		ptr->ids[i].first = 1;
 		ptr->ids[i].rules = ptr;
 		ptr->ids[i].ate = 0;
 		ptr->ids[i].full = 0;
 		ptr->ids[i].timestamp = get_timestamp(0);
-		ptr->ids[i].time_to_die = 0;
 		i++;
 	}
 }

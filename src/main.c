@@ -6,7 +6,7 @@
 /*   By: mhaksal <m.haksal@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 14:24:53 by mhaksal           #+#    #+#             */
-/*   Updated: 2022/06/08 12:52:58 by mhaksal          ###   ########.fr       */
+/*   Updated: 2022/06/08 19:05:04 by mhaksal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	*loop(void *arg)
 
 	ptr = (t_phil *)arg;
 	rules = ptr->rules;
+	ptr->last_ate = get_timestamp(0);
 	while (1)
 	{
 		if (rules->ate_count >= rules->num_of_philos && rules->eaten_enough)
@@ -26,10 +27,8 @@ void	*loop(void *arg)
 			pthread_mutex_lock(&ptr->rules->mutex2);
 			printf("Everyone is full\n");
 			exit(0);
-			pthread_mutex_unlock(&ptr->rules->mutex2);
 		}
 		thinking(ptr);
-		take_fork(ptr);
 		eating(ptr);
 		sleeping(ptr);
 	}

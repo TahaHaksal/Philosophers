@@ -6,7 +6,7 @@
 /*   By: mhaksal <m.haksal@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 14:25:14 by mhaksal           #+#    #+#             */
-/*   Updated: 2022/06/08 12:43:09 by mhaksal          ###   ########.fr       */
+/*   Updated: 2022/06/08 19:06:21 by mhaksal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,5 +65,17 @@ void	sleep_f(int how_long)
 
 	timestamp = get_timestamp(0);
 	while (get_timestamp(0) - timestamp < how_long)
-		usleep(1);
+		usleep(50);
+}
+
+void	print_same(t_phil *ptr, char *str)
+{
+	int			pos;
+	long long	timestamp;
+
+	pos = ptr->pos + 1;
+	timestamp = get_timestamp(ptr->timestamp);
+	pthread_mutex_lock(&ptr->rules->mutex2);
+	printf("%lld %d %s\n", timestamp, pos, str);
+	pthread_mutex_unlock(&ptr->rules->mutex2);
 }
